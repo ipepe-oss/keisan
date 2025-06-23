@@ -8,6 +8,7 @@ module Keisan
         "u+": [1, 100, :right],  # Unary plus
         "**": [2,  95, :right],  # Exponent
         "u-": [1,  90, :right],  # Unary minus
+        "!":  [1, 100, :left],   # Factorial
         "*":  [2,  85, :left],   # Times
         # "/":  [2,  85, :left], # Divide
         "%":  [2,  85, :left],   # Modulo

@@ -25,6 +25,8 @@ RSpec.describe Keisan::AST::Operator do
   it_behaves_like "an operator object", Keisan::Parsing::Exponent.new,                    2,  95, :right
   it_behaves_like "an operator object", Keisan::AST::UnaryMinus,                          1,  90, :right
   it_behaves_like "an operator object", Keisan::Parsing::UnaryMinus.new,                  1,  90, :right
+  it_behaves_like "an operator object", Keisan::AST::Factorial,
+          1, 100, :left
   it_behaves_like "an operator object", Keisan::AST::Times,                               2,  85,  :left
   it_behaves_like "an operator object", Keisan::Parsing::Times.new,                       2,  85,  :left
   it_behaves_like "an operator object", Keisan::AST::Times,                               2,  85,  :left

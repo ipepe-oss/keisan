@@ -726,3 +726,17 @@ RSpec.describe Keisan::Parser do
     end
   end
 end
+
+
+RSpec.describe Keisan::Parser do
+  context "factorial postfix" do
+    it "parses number factorial" do
+      parser = described_class.new(string: "5!")
+      expect(parser.components.map(&:class)).to match_array([
+        Keisan::Parsing::Number,
+        Keisan::Parsing::Factorial
+      ])
+      expect(parser.components[0].value).to eq 5
+    end
+  end
+end
