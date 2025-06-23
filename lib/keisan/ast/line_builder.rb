@@ -96,6 +96,8 @@ module Keisan
             },
             postfix_component.name
           )
+        when Keisan::Parsing::Factorial
+          postfix_component.node_class.new(node)
         else
           raise Keisan::Exceptions::ASTError.new("Invalid postfix component #{postfix_component}")
         end
@@ -104,10 +106,10 @@ module Keisan
       # Returns an array of the form
       # [node, postfix_operators]
       # middle_node is the main node which will be modified by prefix and postfix operators
-      # postfix_operators is an array of Keisan::Parsing::Indexing, DotWord, and DotOperator objects
+      # postfix_operators is an array of Keisan::Parsing::Indexing, DotWord, DotOperator, and Factorial objects
       def node_postfixes(components)
         index_of_postfix_components = components.map.with_index {|c,i| [c,i]}.select {|c,i|
-          c.is_a?(Keisan::Parsing::Indexing) || c.is_a?(Keisan::Parsing::DotWord) || c.is_a?(Keisan::Parsing::DotOperator)
+          c.is_a?(Keisan::Parsing::Indexing) || c.is_a?(Keisan::Parsing::DotWord) || c.is_a?(Keisan::Parsing::DotOperator) || c.is_a?(Keisan::Parsing::Factorial)
         }.map(&:last)
         unless index_of_postfix_components.reverse.map.with_index.all? {|i,j| i + j == components.size - 1 }
           raise Keisan::Exceptions::ASTError.new("postfix components must be in back")

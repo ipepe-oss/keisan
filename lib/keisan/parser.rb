@@ -227,6 +227,8 @@ module Keisan
       # Assignment
       when :"="
         add_assignment_to_components!(token)
+      when :"!"
+        @components << Parsing::Factorial.new
       else
         @components << operator_to_component(token.operator_type)
       end
@@ -244,6 +246,7 @@ module Keisan
       :"^"  => Parsing::BitwiseXor,
       :<<   => Parsing::BitwiseLeftShift,
       :>>   => Parsing::BitwiseRightShift,
+      :"!"  => Parsing::Factorial,
       :"==" => Parsing::LogicalEqual,
       :"!=" => Parsing::LogicalNotEqual,
       :"&&" => Parsing::LogicalAnd,
